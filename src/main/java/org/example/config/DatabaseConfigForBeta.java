@@ -24,31 +24,27 @@ import javax.persistence.EntityManager;
 public class DatabaseConfigForBeta {
 
     @Bean
-    @Primary
-    @ConfigurationProperties("spring.beta-datasource")
-    public DataSourceProperties betaDataSourceProperties() {
+    @ConfigurationProperties("spring.ac-datasource")
+    public DataSourceProperties cameralDataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
-    @Primary
-    @ConfigurationProperties("spring.beta-datasource.configuration")
-    public HikariDataSource betaDataSource() {
-        return betaDataSourceProperties().initializeDataSourceBuilder()
+    @ConfigurationProperties("spring.ac-datasource.configuration")
+    public HikariDataSource cameralDataSource() {
+        return cameralDataSourceProperties().initializeDataSourceBuilder()
                 .type(HikariDataSource.class).build();
     }
 
-    @Primary
     @Bean(name = "betaEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean betaEntityManagerFactory(EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(betaDataSource())
+                .dataSource(cameralDataSource())
                 .persistenceUnit("beta_db")
-                .packages("org.example.repository.beta")
+                .packages("org.example.domain.beta")
                 .build();
     }
 
-    @Primary
     @Bean
     public PlatformTransactionManager betaTransactionManager(
             final @Qualifier("betaEntityManagerFactory") LocalContainerEntityManagerFactoryBean betaEntityManagerFactory) {

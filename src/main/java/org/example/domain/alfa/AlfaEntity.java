@@ -1,16 +1,13 @@
-package org.example.domain.beta;
+package org.example.domain.alfa;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "beta")
-public class BetaEntity {
+@Table(name = "alfa")
+public class AlfaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -19,4 +16,5 @@ public class BetaEntity {
     private String data;
 
     private Integer count;
+
 }
