@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "beta")
+@Table(name = "beta2_entity")
 @NoArgsConstructor
 public class BetaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
 
     @Column(unique = true)
     private String data;

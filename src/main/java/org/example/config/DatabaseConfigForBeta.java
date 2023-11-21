@@ -15,6 +15,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
@@ -24,31 +26,35 @@ import javax.persistence.EntityManager;
 public class DatabaseConfigForBeta {
 
     @Bean
-    @Primary
+//    @Primary
     @ConfigurationProperties("spring.beta-datasource")
     public DataSourceProperties betaDataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
-    @Primary
+//    @Primary
     @ConfigurationProperties("spring.beta-datasource.configuration")
     public HikariDataSource betaDataSource() {
         return betaDataSourceProperties().initializeDataSourceBuilder()
                 .type(HikariDataSource.class).build();
     }
 
-    @Primary
+//    @Primary
     @Bean(name = "betaEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean betaEntityManagerFactory(EntityManagerFactoryBuilder builder) {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("spring.jpa.show-sql", true);
         return builder
                 .dataSource(betaDataSource())
                 .persistenceUnit("beta_db")
-                .packages("org.example.repository.beta")
+                .properties(properties)
+                .packages("org.example.domain.beta")
                 .build();
     }
 
-    @Primary
+//    @Primary
     @Bean
     public PlatformTransactionManager betaTransactionManager(
             final @Qualifier("betaEntityManagerFactory") LocalContainerEntityManagerFactoryBean betaEntityManagerFactory) {

@@ -9,14 +9,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "alpha")
+@Table(name = "alpha2_entity")
 @NoArgsConstructor
 public class AlphaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     private String data;
 
     private Integer count;

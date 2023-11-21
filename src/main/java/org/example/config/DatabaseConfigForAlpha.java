@@ -15,6 +15,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
@@ -41,10 +43,14 @@ public class DatabaseConfigForAlpha {
     @Primary
     @Bean(name = "alphaEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean alphaEntityManagerFactory(EntityManagerFactoryBuilder builder) {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("spring.jpa.show-sql", true);
         return builder
                 .dataSource(alphaDataSource())
                 .persistenceUnit("alpha_db")
-                .packages("org.example.repository.alpha")
+                .properties(properties)
+                .packages("org.example.domain.alpha")
                 .build();
     }
 
