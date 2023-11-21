@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "beta2_entity")
+@Table(name = "beta_entity")
 @NoArgsConstructor
 public class BetaEntity {
     @Id

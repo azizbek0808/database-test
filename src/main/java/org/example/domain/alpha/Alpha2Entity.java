@@ -9,9 +9,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "alpha_entity")
+@Table(name = "alpha2_entity")
 @NoArgsConstructor
-public class AlphaEntity {
+public class Alpha2Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,7 @@ public class AlphaEntity {
 
     private Integer count;
 
-    public AlphaEntity(String data, Integer count) {
+    public Alpha2Entity(String data, Integer count) {
         this.data = data;
         this.count = count;
     }

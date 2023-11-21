@@ -20,4 +20,10 @@ public class TestController {
         String response = service.test();
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/test2")
+    ResponseEntity<?> test2() {
+        String response = service.test2();
+        return ResponseEntity.ok(response);
+    }
 }
