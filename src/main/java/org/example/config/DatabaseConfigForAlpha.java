@@ -44,7 +44,7 @@ public class DatabaseConfigForAlpha {
         return builder
                 .dataSource(alphaDataSource())
                 .persistenceUnit("alpha_db")
-                .packages("org.example.repository.alpha")
+                .packages("org.example.domain.alpha")
                 .build();
     }
 
